@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokemonHelper from './helper_productt'
+import PokemonType from './type'
 
 class Pokemons extends React.Component {
     constructor(props) {
@@ -7,10 +8,23 @@ class Pokemons extends React.Component {
         this.state = {
             pokemon: null,
             pokemons: [],
-            formUrl: null
+            formUrl: null,
+            type: null
         }
     }
 
+    setType() {
+        const type = 'Matthew'
+        this.setState({type})
+    }
+
+    fetchAllPokemonTypes () {
+        return this.state.pokemons.map((item, index) => {
+            return (
+                <PokemonType key={index} name={item.props.children.props.name} onClick={() => this.setType()}/>
+            )
+        })
+    }
 
 
     fetchAllPokemon() {
@@ -19,18 +33,17 @@ class Pokemons extends React.Component {
         fetch(basePath)
         .then(res => res.json())
         .then((json) => {
-            // console.log(`worked`);
-            // console.log(json);
+
             const pokemons = json['results'].map((item, index) => {
-                // console.log(index);
-                // console.log(item.name);
+
                 return (
+                    <div>
                     <PokemonHelper key={index} name={item.name} url={item.url}/>
+                    </div>
                 )
             });
-            // console.log(results);
             this.setState({ pokemons }, () => {
-                console.log(`set pokemon state`);
+                console.log("These are the pokemons " + pokemons);
             });
 
         }).catch(err => console.log(err.message))
@@ -46,13 +59,11 @@ class Pokemons extends React.Component {
     // Now that we have an array with all the pokemons name what we can do from theree
     // <button onClick={this.fetchAllPokemon.bind(this)}> Get All Pokemon</button>
     render () {
-        console.log(this.state.pokemons);
-        // if (this.state.pokemons.length == 0) {
-        //     this.fetchAllPokemon()
-        // }
+            console.log('This is the current state ' + this.state.type)
         return (
             <div className="AllPokemon">
-                <button onClick={() => this.showPokemon()}> Get All Pokemon</button>
+                {this.fetchAllPokemonTypes()}
+                <button onClick={() => this.showPokemon()}>Get All Pokemon </button>
                 {this.state.pokemons}
             </div>
 

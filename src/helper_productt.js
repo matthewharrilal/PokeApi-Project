@@ -22,14 +22,13 @@ class PokemonHelper extends Component {
             return res.json()
         }).then((json) => {
             const pokeImageUrl = json.sprites.front_default
-            console.log(">> ", pokeImageUrl)
+
             this.setState({ pokeImageUrl })
         })
         .catch(err => console.log(err.message))
     }
 
     getImage() {
-        console.log('>>> ', this.state)
         if (this.state.pokeImageUrl !== null) {
             return <img src={this.state.pokeImageUrl} className="poke-image" />
             // return <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`} />
