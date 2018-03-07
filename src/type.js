@@ -16,6 +16,8 @@ class PokemonType extends Component {
             const type  = 'Matthew'
             this.setState({type})
         }).catch(err => console.log(err.message))
+
+
     }
      // What do we have to do from here we have to essentially get all the types of the pokemon and then what we have to do from there is
      // make a button that display the state so we are going to make that and we have to connect this component to the pokemons Component
@@ -25,7 +27,10 @@ class PokemonType extends Component {
 
     render() {
         return (
-            <button onClick={this.props.onClick}>Get Types</button>
+            <div>
+            {this.getPokeType()}
+            <button onClick={this.props.onClick}>{this.props.name}</button>
+            </div>
         )
     }
 }

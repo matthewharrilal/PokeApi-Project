@@ -28,6 +28,9 @@ class PokemonHelper extends Component {
         .catch(err => console.log(err.message))
     }
 
+    // The reason that we have this function in here is due to the reasont that we want to be able to fetch the poke data and from there
+    // what we can do is when the user taps thte on
+
     getImage() {
         if (this.state.pokeImageUrl !== null) {
             return <img src={this.state.pokeImageUrl} className="poke-image" />
