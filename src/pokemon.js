@@ -13,8 +13,8 @@ class Pokemon extends Component {
 
     fetchPokemon(event) {
         const count = 2
-        const basePath = `https://pokeapi.co/api/v2/pokemon/${event.target.value}/`
-        const options = {mode: 'no-cors'}
+        const basePath = `https://pokeapi.co/api/v2/pokemon/${count}/`
+
         fetch(basePath)
         .then(res => res.json())
         .then((json) => {
