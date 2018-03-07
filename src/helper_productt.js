@@ -41,12 +41,13 @@ class PokemonHelper extends Component {
 
     render() {
         return (
-            <div id='PokemonHelper'>
+            <div id='PokemonHelper' className="pokemonStyles">
                 {this.getImage()}
                 <h2>{this.props.name}</h2>
             </div>
         )
     }
 }
+
 
 export default PokemonHelper

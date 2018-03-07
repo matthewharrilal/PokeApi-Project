@@ -49,6 +49,7 @@ class Pokemons extends React.Component {
         }).catch(err => console.log(err.message))
     }
 
+
     showPokemon() {
         if (this.state.pokemons.length == 0) {
             this.fetchAllPokemon();
@@ -62,8 +63,7 @@ class Pokemons extends React.Component {
             console.log('This is the current state ' + this.state.type)
         return (
             <div className="AllPokemon">
-                {this.fetchAllPokemonTypes()}
-                <button onClick={() => this.showPokemon()}>Get All Pokemon </button>
+                {this.showPokemon()}
                 {this.state.pokemons}
             </div>
 
