@@ -18,10 +18,26 @@ class Pokemons extends React.Component {
         this.setState({type})
     }
 
+    getPokeType() {
+        const basePath = `https://pokeapi.co/api/v2/pokemon/type`
+        fetch(basePath)
+        .then(res => res.json())
+        .then((json) => {
+            json.results.map((item, index) => {
+                const type = item.type
+                this.setState({type}, () => {
+                    console.log('This is the state for type ' + type)
+                })
+            })
+        }).catch(err => console.log(err.message))
+
+
+    }
+
     fetchAllPokemonTypes () {
         return this.state.pokemons.map((item, index) => {
             return (
-                <PokemonType key={index} name={item.props.children.props.name} onClick={() => this.setType()}/>
+                <PokemonType key={index} name={item.props.children.props.name} onClick={() => this.getPokeType()}/>
             )
         })
     }
