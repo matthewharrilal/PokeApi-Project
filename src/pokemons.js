@@ -9,7 +9,7 @@ class Pokemons extends React.Component {
             pokemon: null,
             pokemons: [],
             formUrl: null,
-            type: null
+            type: []
         }
     }
 
@@ -19,27 +19,9 @@ class Pokemons extends React.Component {
     }
 
     getPokeType() {
-        const basePath = `https://pokeapi.co/api/v2/pokemon/type`
-        fetch(basePath)
-        .then(res => res.json())
-        .then((json) => {
-            json.results.map((item, index) => {
-                const type = item.type
-                this.setState({type}, () => {
-                    console.log('This is the state for type ' + type)
-                })
-            })
-        }).catch(err => console.log(err.message))
-
-
-    }
-
-    fetchAllPokemonTypes () {
-        return this.state.pokemons.map((item, index) => {
-            return (
-                <PokemonType key={index} name={item.props.children.props.name} onClick={() => this.getPokeType()}/>
-            )
-        })
+        return (
+            <PokemonType/>
+        )
     }
 
 
@@ -79,7 +61,11 @@ class Pokemons extends React.Component {
             console.log('This is the current state ' + this.state.type)
         return (
             <div className="AllPokemon">
+
+
+                {this.getPokeType()}
                 {this.showPokemon()}
+
                 {this.state.pokemons}
             </div>
 
